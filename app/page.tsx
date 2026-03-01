@@ -1,8 +1,17 @@
-"use client"
-
 import { ImageCarouselHero } from "@/components/ui/ai-image-generator-hero"
+import { createClient } from "@/lib/supabase/server"
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient()
+
+  // Connection Test: Tries to get the auth session. 
+  // This won't throw an error even if the keys are invalid placeholder strings, 
+  // but it verifies the client initializes properly.
+  const { data: { session }, error } = await supabase.auth.getSession()
+
+  // Check if we have valid-looking environment variables
+  const hasEnvVars = process.env.NEXT_PUBLIC_SUPABASE_URL !== "your-supabase-url-here" &&
+    process.env.NEXT_PUBLIC_SUPABASE_URL !== undefined;
   const demoImages = [
     {
       id: "1",
@@ -75,7 +84,6 @@ export default function Home() {
       subtitle="AI Photo Generation"
       description="AI 자동화, 수익화, 그리고 다양한 개인 프로젝트 기록"
       ctaText="프로젝트 구경하기"
-      onCtaClick={() => console.log("CTA clicked!")}
       images={demoImages}
       features={demoFeatures}
     />

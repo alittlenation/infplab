@@ -18,6 +18,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { AuthProvider } from "@/components/providers/AuthProvider";
+
 export const metadata: Metadata = {
   title: "INFP의 상상은 현실이 된다",
   description: "INFP의 상상은 현실이 된다",
@@ -33,7 +35,9 @@ export default function RootLayout({
       <body
         className={`${funnelSans.variable} ${geistMono.variable} ${cuteFont.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

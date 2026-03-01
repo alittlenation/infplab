@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -152,19 +153,20 @@ export function ImageCarouselHero({
                     <p className="text-lg sm:text-xl text-muted-foreground mb-8 text-balance">{description}</p>
 
                     {/* CTA Button */}
-                    <button
-                        onClick={onCtaClick}
-                        className={cn(
-                            "inline-flex items-center gap-2 px-8 py-3 rounded-full",
-                            "bg-white text-black font-semibold shadow-md",
-                            "hover:shadow-xl hover:bg-gray-50 hover:scale-105 transition-all duration-300",
-                            "active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
-                            "group",
-                        )}
-                    >
-                        {ctaText}
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    <Link href="/workspace" className="group">
+                        <button
+                            onClick={onCtaClick}
+                            className={cn(
+                                "inline-flex items-center gap-2 px-8 py-3 rounded-full",
+                                "bg-white text-black font-semibold shadow-md",
+                                "hover:shadow-xl hover:bg-gray-50 hover:scale-105 transition-all duration-300",
+                                "active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                            )}
+                        >
+                            {ctaText}
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Features Section */}
